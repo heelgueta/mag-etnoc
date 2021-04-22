@@ -12,7 +12,7 @@ dfe5 <- subset(read.csv("etnoc.csv",fileEncoding="UTF-8-BOM"),
 			 est == 10000 | est == 20000 | est == 30000 |
 			 	est == 40000 | est == 60000 | est == 170000 |
 			 	est == 180000 |	est == 200000 , 
-			 select=c(pid,sex,age,reg1,reg2,reg3,reg4,reg5,reg6,reg7,reg8))
+			 select=c(est,pid,sex,age,reg1,reg2,reg3,reg4,reg5,reg6,reg7,reg8))
 #remove cases with missing data
 dfe5 <- na.omit(dfe5)
 
@@ -20,7 +20,7 @@ dfe5 <- na.omit(dfe5)
 dfe7 <- subset(read.csv("etnoc.csv",fileEncoding="UTF-8-BOM"),
 							 est == 110000 | est == 120000 | est == 130000 |
 							 	est == 140000 | est == 150000 | est == 160000 | est == 190000,
-							 select=c(pid,sex,age,reg1,reg2,reg3,reg4,reg5,reg6,reg7,reg8))
+							 select=c(est,pid,sex,age,reg1,reg2,reg3,reg4,reg5,reg6,reg7,reg8))
 #remove cases with missing data
 dfe7 <- na.omit(dfe7)
 
@@ -33,10 +33,13 @@ round(mean(dfe5$age),2);round(sd(dfe5$age),2)
 table(dfe7$sex)
 round(mean(dfe7$age),2);round(sd(dfe7$age),2)
 
+#n por estudio
+table(dfe5$est)
+table(dfe7$est)
 ###step 4
 #classic psychometric analyses
-round(psych::alpha(dfe5[04:11])$total$std.alpha,3);round(psych::omega(dfe5[04:11],plot=FALSE)$omega.tot,3)
-round(psych::alpha(dfe7[04:11])$total$std.alpha,3);round(psych::omega(dfe7[04:11],plot=FALSE)$omega.tot,3)
+round(psych::alpha(dfe5[05:12])$total$std.alpha,3);round(psych::omega(dfe5[05:12],plot=FALSE)$omega.tot,3)
+round(psych::alpha(dfe7[05:12])$total$std.alpha,3);round(psych::omega(dfe7[05:12],plot=FALSE)$omega.tot,3)
 
 ###step 5
 #1 factor cfa
